@@ -29,7 +29,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -56,7 +55,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.core.view.WindowCompat
 import com.nlf.calendar.Lunar
 import kotlinx.coroutines.delay
 import me.spica.lunar.ui.theme.LunarTheme
@@ -69,8 +67,6 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        WindowCompat.getInsetsController(window, window.decorView).isAppearanceLightStatusBars =
-            true
         setContent {
             LunarTheme {
                 Main()
@@ -125,16 +121,14 @@ fun Main() {
     )
 
     Background {
-        Scaffold(
+        Box(
             modifier = Modifier.clickable {
                 showExtraPanel.value = true
             },
-            containerColor = Color.Transparent,
-            contentColor = Color.Transparent
-        ) { paddingValues ->
+        ) {
             Box(
                 modifier = Modifier
-                    .padding(paddingValues)
+                    .padding(vertical = 28.dp)
                     .fillMaxSize()
             ) {
                 Column(
